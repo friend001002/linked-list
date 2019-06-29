@@ -1,0 +1,4 @@
+﻿  linked_list.cpp
+d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(272): warning C4702: unreachable code
+d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(588): warning C4702: unreachable code
+  linked_list.vcxproj -> D:\Visual_Studio_Projects\C++\Study\linked_list\Debug\linked_list.exe
