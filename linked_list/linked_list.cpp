@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -50,7 +51,7 @@ class Single_linked_list
 {
   public:
     
-  Single_linked_list() : first_{nullptr}
+  Single_linked_list() : first_{nullptr}, size_{}
   {}
 
   virtual ~Single_linked_list()
@@ -60,6 +61,12 @@ class Single_linked_list
       void *tmp { first_->next_ };
       first_->~Single_linked_node();
       first_ = { static_cast<Single_linked_node<val_type>*>(tmp) };
+      size_--;
+    }
+
+    if (0 != size_)
+    {
+      cerr << "~Single_linked_list: all elements were destroyed, but size = " << size_ << " (" << __FILE__ << ", " << __LINE__ << ")\n";
     }
 
     cout << this << " single linked list destr\n";
@@ -84,6 +91,8 @@ class Single_linked_list
       first_ = { new Single_linked_node<val_type>(val) };
 
       *result = { first_ };
+
+      size_++;
       return true;
     }
 
@@ -103,6 +112,8 @@ class Single_linked_list
       first_ = { *result };
 
       (*result)->next_ = { tmp };
+
+      size_++;
 
       return true;
     }
@@ -127,6 +138,8 @@ class Single_linked_list
 
     (*result)->next_ = { tmp };
 
+    size_++;
+
     return true;
   }
 
@@ -138,7 +151,7 @@ class Single_linked_list
       return false;
     }
 
-    if (false == Find_node(after))
+    if (nullptr != after && false == Find_node(after))
     {
       cerr << "Add_element: Failed to find node " << after << " in single linked list " << this << " (" << __FILE__ << ' ' << __LINE__ << ")\n";
       return false;
@@ -148,6 +161,7 @@ class Single_linked_list
     if (nullptr == first_)
     {
       first_ = { *el };
+      size_++;
 
       return true;
     }
@@ -161,6 +175,8 @@ class Single_linked_list
 
       (*el)->next_ = { tmp };
 
+      size_++;
+
       return true;
     }
 
@@ -169,6 +185,8 @@ class Single_linked_list
     after->next_ = { *el };
 
     (*el)->next_ = { tmp };
+
+    size_++;
 
     return true;
   }
@@ -210,7 +228,7 @@ class Single_linked_list
     }
 
     *parent = { nullptr };
-    cout << "Find_parent: Failed to find node " << el << " in single linked list " << this << " (" << __FILE__ << ' ' << __LINE__ << ")\n";
+
     return false;
   }
 
@@ -234,6 +252,8 @@ class Single_linked_list
     {
       first_ = { el->next_ };
       el->~Single_linked_node();
+      size_--;
+
       return true;
     }
 
@@ -256,6 +276,7 @@ class Single_linked_list
 
       parent->next_ = { nullptr };
       el->~Single_linked_node();
+      size_--;
 
       return true;
     }
@@ -265,12 +286,14 @@ class Single_linked_list
 
       parent->next_ = { el->next_ };
       el->~Single_linked_node();
+      size_--;
 
       return true;
     }
 
-    cout << "Delete_element: Failed to delete node " << el << " from single linked list " << this << " (" << __FILE__ << ' ' << __LINE__ << ")\n";
-    return false;
+    // Unreacheable for now.
+    //cout << "Delete_element: Failed to delete node " << el << " from single linked list " << this << " (" << __FILE__ << ' ' << __LINE__ << ")\n";
+    //return false;
   }
 
   bool Find_value_first_occur(val_type val, Single_linked_node<val_type> **result)
@@ -339,8 +362,256 @@ class Single_linked_list
     return false;
   }
 
+  Single_linked_node<val_type>* operator[](size_t index) const
+  {
+    if (nullptr == first_)
+    {
+      cerr << "Single_linked_node operator[]: no elements (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return nullptr;
+    }
+
+    if (index >= size_)
+    {
+      cerr << "Single_linked_node operator[]: index " << index << " is out of bounds (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return nullptr;
+    }
+
+    Single_linked_node<val_type> *curr{ first_ };
+    val_type ret{};
+
+    for (size_t i{}; i < index; ++i)
+    {
+      if (nullptr != curr)
+      {
+        curr = { curr->next_ };
+      }
+      else
+      {
+        cerr << "Single_linked_node operator[]: Can't access element with index" << index << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+        return nullptr;
+      }
+    }
+
+    return curr;
+  }
+
+  size_t Get_size() const noexcept
+  {
+    return size_;
+  }
+
+  bool Move_after(size_t what, size_t after)
+  {
+    if (what >= size_)
+    {
+      cerr << "Single_linked_node Move_after: what (" << what << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (after >= size_)
+    {
+      cerr << "Single_linked_node Move_after: after (" << after << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (what == after)
+    {
+      return true;
+    }
+
+    if (abs(what - after) == 1 && what > after)
+    {
+      return true;
+    }
+
+    Single_linked_node<val_type> *what_ptr{ operator[](what) };
+    Single_linked_node<val_type> *after_ptr{ operator[](after) };
+
+    return Move(what_ptr, after_ptr);
+  }
+
+  bool Move_before(size_t what, size_t before)
+  {
+    if (what >= size_)
+    {
+      cerr << "Single_linked_node Move_before: what (" << what << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (before >= size_)
+    {
+      cerr << "Single_linked_node Move_before: before (" << before << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (what == before)
+    {
+      return true;
+    }
+
+    if (abs(what - before) == 1 && what < before)
+    {
+      return true;
+    }
+
+    Single_linked_node<val_type> *what_ptr{ operator[](what) };
+
+    if (before > 0)
+    {
+      Single_linked_node<val_type> *after_ptr{ operator[](before - 1) };
+
+      return Move(what_ptr, after_ptr);
+    }
+    else
+    {
+      return Move(what_ptr, nullptr);
+    }
+  }
+
+  bool Swap_vals(size_t a, size_t b)
+  {
+    if (a >= size_)
+    {
+      cerr << "Single_linked_node Swap: a (" << a << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (b >= size_)
+    {
+      cerr << "Single_linked_node Swap: b (" << b << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (a == b)
+    {
+      return true;
+    }
+
+    Single_linked_node<val_type> *a_ptr{ operator[](a) };
+    Single_linked_node<val_type> *b_ptr{ operator[](b) };
+
+    return Swap_vals(a_ptr, b_ptr);
+  }
+
+  bool Swap_vals(Single_linked_node<val_type>* a, Single_linked_node<val_type>* b)
+  {
+    if (nullptr == a)
+    {
+      cerr << "Single_linked_node Swap: a (" << a << ") must not be nullptr (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (nullptr == b)
+    {
+      cerr << "Single_linked_node Swap: b (" << b << ") must not be nullptr (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (a == b)
+    {
+      return true;
+    }
+
+    if (false == Find_node(a))
+    {
+      cerr << "Single_linked_node Swap: node a (" << a << ") must be a part of linked list (" << this << ") (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (false == Find_node(b))
+    {
+      cerr << "Single_linked_node Swap: node b (" << b << ") must be a part of linked list (" << this << ") (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    val_type tmp{ a->val_ };
+    a->val_ = { b->val_ };
+    b->val_ = { tmp };
+
+    return true;
+  }
+
   private:
+
+  bool Move(Single_linked_node<val_type>* what, Single_linked_node<val_type>* after)
+  {
+    if (nullptr == what)
+    {
+      cerr << "Single_linked_node Move: what (" << what << ") must not be nullptr (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (false == Find_node(what))
+    {
+      cerr << "Single_linked_node Move: node what (" << what << ") must be a part of linked list (" << this << ") (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (what == after)
+    {
+      return true;
+    }
+
+    Single_linked_node<val_type> *what_prev_old { /*what->prev_*/ };
+    Find_parent(what, &what_prev_old);
+
+    Single_linked_node<val_type> *what_next_old{ what->next_ };
+    Single_linked_node<val_type> *after_next_old{};
+
+    if (nullptr != after)
+    {
+      after_next_old = { after->next_ };
+      after->next_ = { nullptr };
+    }
+
+    /*what->prev_ =*/ what->next_ = { nullptr };
+
+    if (nullptr != what_prev_old)
+    {
+      what_prev_old->next_ = { what_next_old };
+    }
+
+    /*if (nullptr != what_next_old)
+    {
+      what_next_old->prev_ = { what_prev_old };
+    }*/
+
+    if (nullptr != after)
+    {
+      after->next_ = { what };
+    }
+
+    //what->prev_ = { after };
+
+    if (nullptr != after_next_old)
+    {
+      what->next_ = { after_next_old };
+    }
+    else if (nullptr == after)
+    {
+      what->next_ = { first_ };
+    }
+
+    /*if (nullptr != after_next_old)
+    {
+      after_next_old->prev_ = { what };
+    }*/
+
+    if (what == first_)
+    {
+      first_ = { what_next_old };
+    }
+
+    if (nullptr == after)
+    {
+      //first_->prev_ = { what };
+      first_ = { what };
+    }
+
+    return true;
+  }
   
+  std::size_t size_;
   Single_linked_node<val_type> *first_;
 };
 
@@ -400,7 +671,7 @@ class Double_linked_list
 {
   public:
 
-  Double_linked_list() : first_{ nullptr }
+  Double_linked_list() : first_{ nullptr }, size_{}
   {}
 
   virtual ~Double_linked_list()
@@ -410,6 +681,12 @@ class Double_linked_list
       void *tmp { first_->next_ };
       first_->~Double_linked_node();
       first_ = { static_cast<Double_linked_node<val_type>*>(tmp) };
+      size_--;
+    }
+
+    if (0 != size_)
+    {
+      cerr << "~Double_linked_list: all elements were destroyed, but size = " << size_ << " (" << __FILE__ << ", " << __LINE__ << ")\n";
     }
 
     cout << this << " double linked list destr\n";
@@ -434,6 +711,7 @@ class Double_linked_list
       first_ = { new Double_linked_node<val_type>(val) };
 
       *result = { first_ };
+      size_++;
       return true;
     }
 
@@ -453,6 +731,7 @@ class Double_linked_list
       first_ = { *result };
 
       (*result)->next_ = { tmp };
+      size_++;
 
       return true;
     }
@@ -482,6 +761,7 @@ class Double_linked_list
     {
       tmp->prev_ = { *result };
     }
+    size_++;
 
     return true;
   }
@@ -494,7 +774,7 @@ class Double_linked_list
       return false;
     }
 
-    if (false == Find_node(after))
+    if (nullptr != after && false == Find_node(after))
     {
       cerr << "Add_element: Failed to find node " << after << " in single linked list " << this << " (" << __FILE__ << ' ' << __LINE__ << ")\n";
       return false;
@@ -504,6 +784,7 @@ class Double_linked_list
     if (nullptr == first_)
     {
       first_ = { *el };
+      size_++;
 
       return true;
     }
@@ -516,6 +797,7 @@ class Double_linked_list
       first_ = { *el };
 
       (*el)->next_ = { tmp };
+      size_++;
 
       return true;
     }
@@ -531,6 +813,7 @@ class Double_linked_list
     {
       tmp->prev_ = { *el };
     }
+    size_++;
 
     return true;
   }
@@ -555,6 +838,8 @@ class Double_linked_list
     {
       first_ = { el->next_ };
       el->~Double_linked_node();
+      size_--;
+
       return true;
     }
 
@@ -572,6 +857,7 @@ class Double_linked_list
 
       parent->next_ = { nullptr };
       el->~Double_linked_node();
+      size_--;
 
       return true;
     }
@@ -581,12 +867,14 @@ class Double_linked_list
 
       parent->next_ = { el->next_ };
       el->~Double_linked_node();
+      size_--;
 
       return true;
     }
 
-    cout << "Delete_element: Failed to delete node " << el << " from single linked list " << this << " (" << __FILE__ << ' ' << __LINE__ << ")\n";
-    return false;
+    // Unreacheable for now
+    //cout << "Delete_element: Failed to delete node " << el << " from single linked list " << this << " (" << __FILE__ << ' ' << __LINE__ << ")\n";
+    //return false;
   }
 
   bool Find_value_first_occur(val_type val, Double_linked_node<val_type> **result)
@@ -655,8 +943,253 @@ class Double_linked_list
     return false;
   }
 
+  Double_linked_node<val_type>* operator[](size_t index) const
+  {
+    if (nullptr == first_)
+    {
+      cerr << "Double_linked_node operator[]: no elements (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return nullptr;
+    }
+
+    if (index >= size_)
+    {
+      cerr << "Double_linked_node operator[]: index " << index << " is out of bounds (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return nullptr;
+    }
+
+    Double_linked_node<val_type> *curr{ first_ };
+    val_type ret{};
+
+    for (size_t i{}; i < index; ++i)
+    {
+      if (nullptr != curr)
+      {
+        curr = { curr->next_ };
+      }
+      else
+      {
+        cerr << "Double_linked_node operator[]: Can't access element with index" << index << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+        return nullptr;
+      }
+    }
+
+    return curr;
+  }
+
+  size_t Get_size() const noexcept
+  {
+    return size_;
+  }
+
+  bool Move_after(size_t what, size_t after)
+  {
+    if (what >= size_)
+    {
+      cerr << "Double_linked_node Move_after: what (" << what << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (after >= size_)
+    {
+      cerr << "Double_linked_node Move_after: after (" << after << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (what == after)
+    {
+      return true;
+    }
+
+    if (abs(what - after) == 1 && what > after)
+    {
+      return true;
+    }
+
+    Double_linked_node<val_type> *what_ptr  { operator[](what) };
+    Double_linked_node<val_type> *after_ptr { operator[](after) };
+
+    return Move(what_ptr, after_ptr);
+  }
+
+  bool Move_before(size_t what, size_t before)
+  {
+    if (what >= size_)
+    {
+      cerr << "Double_linked_node Move_before: what (" << what << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (before >= size_)
+    {
+      cerr << "Double_linked_node Move_before: before (" << before << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (what == before)
+    {
+      return true;
+    }
+
+    if (abs(what - before) == 1 && what < before)
+    {
+      return true;
+    }
+
+    Double_linked_node<val_type> *what_ptr{ operator[](what) };
+
+    if (before > 0)
+    {
+      Double_linked_node<val_type> *after_ptr{ operator[](before - 1) };
+
+      return Move(what_ptr, after_ptr);
+    }
+    else
+    {
+      return Move(what_ptr, nullptr);
+    }
+  }
+
+  bool Swap_vals(size_t a, size_t b)
+  {
+    if (a >= size_)
+    {
+      cerr << "Double_linked_node Swap: a (" << a << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (b >= size_)
+    {
+      cerr << "Double_linked_node Swap: b (" << b << ") must be < size (" << size_ << ") (" << " (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (a == b)
+    {
+      return true;
+    }
+
+    Double_linked_node<val_type> *a_ptr { operator[](a) };
+    Double_linked_node<val_type> *b_ptr { operator[](b) };
+
+    return Swap_vals(a_ptr, b_ptr);
+  }
+
+  bool Swap_vals(Double_linked_node<val_type>* a, Double_linked_node<val_type>* b)
+  {
+    if (nullptr == a)
+    {
+      cerr << "Double_linked_node Swap: a (" << a << ") must not be nullptr (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (nullptr == b)
+    {
+      cerr << "Double_linked_node Swap: b (" << b << ") must not be nullptr (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (a == b)
+    {
+      return true;
+    }
+
+    if (false == Find_node(a))
+    {
+      cerr << "Double_linked_node Swap: node a (" << a << ") must be a part of linked list (" << this << ") (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (false == Find_node(b))
+    {
+      cerr << "Double_linked_node Swap: node b (" << b << ") must be a part of linked list (" << this << ") (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    val_type tmp{ a->val_ };
+    a->val_ = { b->val_ };
+    b->val_ = { tmp };
+
+    return true;
+  }
+
   private:
 
+  bool Move(Double_linked_node<val_type>* what, Double_linked_node<val_type>* after)
+  {
+    if (nullptr == what)
+    {
+      cerr << "Double_linked_node Move: what (" << what << ") must not be nullptr (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (false == Find_node(what))
+    {
+      cerr << "Double_linked_node Move: node what (" << what << ") must be a part of linked list (" << this << ") (" << __FILE__ << ", " << __LINE__ << ")\n";
+      return false;
+    }
+
+    if (what == after)
+    {
+      return true;
+    }
+
+    Double_linked_node<val_type> *what_prev_old{ what->prev_ };
+    Double_linked_node<val_type> *what_next_old{ what->next_ };
+    Double_linked_node<val_type> *after_next_old{};
+
+    if (nullptr != after)
+    {
+      after_next_old = { after->next_ };
+      after->next_ = { nullptr };
+    }
+
+    what->prev_ = what->next_ = { nullptr };
+
+    if (nullptr != what_prev_old)
+    {
+      what_prev_old->next_ = { what_next_old };
+    }
+
+    if (nullptr != what_next_old)
+    {
+      what_next_old->prev_ = { what_prev_old };
+    }
+
+    if (nullptr != after)
+    {
+      after->next_ = { what };
+    }
+
+    what->prev_ = { after };
+    if (nullptr != after_next_old)
+    {
+      what->next_ = { after_next_old };
+    }
+    else if (nullptr == after)
+    {
+      what->next_ = { first_ };
+    }
+
+    if (nullptr != after_next_old)
+    {
+      after_next_old->prev_ = { what };
+    }
+
+    if (what == first_)
+    {
+      first_ = { what_next_old };
+    }
+
+    if (nullptr == after)
+    {
+      first_->prev_ = { what };
+      first_ = { what };
+    }
+
+    return true;
+  }
+
+  size_t size_;
   Double_linked_node<val_type> *first_;
 };
 
@@ -719,11 +1252,22 @@ int main()
 
     cout << endl;
 
+    cout << "size " << sl.Get_size() << endl;
+
     Single_linked_node<double> *parent { new Single_linked_node<double> };
 
     if (sl.Find_parent(emplaced, &parent) && nullptr != parent)
     {
-      cout << parent->Get_val();
+      cout << "Parent of " << emplaced->Get_val() << ": " << parent->Get_val();
+    }
+
+    cout << endl;
+
+    cout << "Move 5 after 6: " << sl.Move_after(5, 6) << endl;
+
+    for (size_t i{}; i < sl.Get_size(); ++i)
+    {
+      cout << sl[i]->Get_val() << ' ';
     }
 
     cout << endl;
@@ -735,12 +1279,21 @@ int main()
       sl.Delete_element(found);
     }
 
+    cout << "size " << sl.Get_size() << endl;
+
     curr = sl.Get_first();
 
     while (nullptr != curr)
     {
       cout << curr->Get_val() << ' ';
       curr = curr->Get_next();
+    }
+
+    cout << endl;
+
+    for (size_t i{}; i < sl.Get_size(); ++i)
+    {
+      cout << sl[i]->Get_val() << ' ';
     }
 
     cout << endl;
@@ -802,11 +1355,24 @@ int main()
 
     cout << endl;
 
+    cout << "size " << dl.Get_size() << endl;
+
     Double_linked_node<double> *parent_2 { emplaced_2->Get_prev() };
 
     if (nullptr != parent_2)
     {
-      cout << parent->Get_val();
+      cout << "Parent of " << emplaced->Get_val() << ": " << emplaced_2->Get_prev()->Get_val();
+    }
+
+    cout << endl;
+
+    cout << "Move 6 after 0: " << dl.Move_after(6, 0) << endl;
+
+    //dl.Swap_vals(emplaced_2, emplaced_2->Get_prev());
+
+    for (size_t i{}; i < dl.Get_size(); ++i)
+    {
+      cout << dl[i]->Get_val() << ' ';
     }
 
     cout << endl;
@@ -818,12 +1384,21 @@ int main()
       dl.Delete_element(found_2);
     }
 
+    cout << "size " << dl.Get_size() << endl;
+
     curr_2 = dl.Get_first();
 
     while (nullptr != curr_2)
     {
       cout << curr_2->Get_val() << ' ';
       curr_2 = { curr_2->Get_next() };
+    }
+
+    cout << endl;
+
+    for (size_t i {}; i < dl.Get_size(); ++i)
+    {
+      cout << dl[i]->Get_val() << ' ';
     }
 
     cout << endl;
