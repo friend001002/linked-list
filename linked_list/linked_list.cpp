@@ -737,6 +737,8 @@ class Double_linked_list
       first_ = { *result };
 
       (*result)->next_ = { tmp };
+      tmp->prev_ = (*result);
+
       size_++;
 
       return true;
@@ -803,6 +805,8 @@ class Double_linked_list
       first_ = { *el };
 
       (*el)->next_ = { tmp };
+      tmp->prev_ = (*el);
+
       size_++;
 
       return true;
