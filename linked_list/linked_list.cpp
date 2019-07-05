@@ -59,8 +59,11 @@ class Single_linked_list
     while (nullptr != first_)
     {
       void *tmp { first_->next_ };
-      first_->~Single_linked_node();
+
+      delete first_;
+
       first_ = { static_cast<Single_linked_node<val_type>*>(tmp) };
+
       size_--;
     }
 
@@ -679,8 +682,11 @@ class Double_linked_list
     while (nullptr != first_)
     {
       void *tmp { first_->next_ };
-      first_->~Double_linked_node();
+
+      delete first_;
+
       first_ = { static_cast<Double_linked_node<val_type>*>(tmp) };
+
       size_--;
     }
 
@@ -731,6 +737,8 @@ class Double_linked_list
       first_ = { *result };
 
       (*result)->next_ = { tmp };
+      tmp->prev_ = (*result);
+
       size_++;
 
       return true;
@@ -797,6 +805,8 @@ class Double_linked_list
       first_ = { *el };
 
       (*el)->next_ = { tmp };
+      tmp->prev_ = (*el);
+
       size_++;
 
       return true;
