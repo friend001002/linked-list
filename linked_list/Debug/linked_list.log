@@ -80,46 +80,57 @@ c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.1
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\istream(834): warning C4820: 'std::basic_iostream<wchar_t,std::char_traits<wchar_t>>': '4' bytes padding added after base class 'std::basic_ostream<wchar_t,std::char_traits<wchar_t>>'
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\istream(840): note: see reference to class template instantiation 'std::basic_iostream<wchar_t,std::char_traits<wchar_t>>' being compiled
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\istream(834): warning C4820: 'std::basic_iostream<wchar_t,std::char_traits<wchar_t>>': '4' bytes padding added after data member '<alignment member>'
-d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(47): warning C4820: 'Single_linked_node<val_type>': '4' bytes padding added after data member 'Single_linked_node<val_type>::next_'
+d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(69): warning C4820: 'Single_linked_node<val_type>': '4' bytes padding added after data member 'Single_linked_node<val_type>::next_'
           with
           [
               val_type=double
           ]
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1214): note: see reference to class template instantiation 'Single_linked_node<val_type>' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2124): note: see reference to class template instantiation 'Single_linked_node<val_type>' being compiled
           with
           [
               val_type=double
           ]
-d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(971): warning C4189: 'ret': local variable is initialized but not referenced
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(957): note: while compiling class template member function 'Double_linked_node<val_type> *Double_linked_list<val_type>::operator [](size_t) const'
+d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1659): warning C4189: 'ret': local variable is initialized but not referenced
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1643): note: while compiling class template member function 'Double_linked_node<val_type> *Double_linked_list<val_type>::operator [](size_t) const'
           with
           [
               val_type=double
           ]
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1385): note: see reference to function template instantiation 'Double_linked_node<val_type> *Double_linked_list<val_type>::operator [](size_t) const' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2522): note: see reference to function template instantiation 'Double_linked_node<val_type> *Double_linked_list<val_type>::operator [](size_t) const' being compiled
           with
           [
               val_type=double
           ]
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1315): note: see reference to class template instantiation 'Double_linked_list<double>' being compiled
-d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(677): warning C5038: data member 'Double_linked_list<double>::first_' will be initialized after data member 'Double_linked_list<double>::size_'
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(677): note: while compiling class template member function 'Double_linked_list<double>::Double_linked_list(void)'
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1315): note: see reference to function template instantiation 'Double_linked_list<double>::Double_linked_list(void)' being compiled
-d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(383): warning C4189: 'ret': local variable is initialized but not referenced
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(369): note: while compiling class template member function 'Single_linked_node<val_type> *Single_linked_list<val_type>::operator [](size_t) const'
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2432): note: see reference to class template instantiation 'Double_linked_list<double>' being compiled
+d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1154): warning C5038: data member 'Double_linked_list<double>::first_' will be initialized after data member 'Double_linked_list<double>::size_'
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1154): note: while compiling class template member function 'Double_linked_list<double>::Double_linked_list(void)'
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2432): note: see reference to function template instantiation 'Double_linked_list<double>::Double_linked_list(void)' being compiled
+d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(642): warning C4189: 'ret': local variable is initialized but not referenced
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(626): note: while compiling class template member function 'Single_linked_node<val_type> *Single_linked_list<val_type>::operator [](size_t) noexcept(false) const'
           with
           [
               val_type=double
           ]
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1280): note: see reference to function template instantiation 'Single_linked_node<val_type> *Single_linked_list<val_type>::operator [](size_t) const' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2204): note: see reference to function template instantiation 'Single_linked_node<val_type> *Single_linked_list<val_type>::operator [](size_t) noexcept(false) const' being compiled
           with
           [
               val_type=double
           ]
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1212): note: see reference to class template instantiation 'Single_linked_list<double>' being compiled
-d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(54): warning C5038: data member 'Single_linked_list<double>::first_' will be initialized after data member 'Single_linked_list<double>::size_'
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(54): note: while compiling class template member function 'Single_linked_list<double>::Single_linked_list(void)'
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1212): note: see reference to function template instantiation 'Single_linked_list<double>::Single_linked_list(void)' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2119): note: see reference to class template instantiation 'Single_linked_list<double>' being compiled
+d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(525): warning C4101: 'ex': unreferenced local variable
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(469): note: while compiling class template member function 'void Single_linked_list<double>::Delete_element_ex(Single_linked_node<val_type> *) noexcept(false)'
+          with
+          [
+              val_type=double
+          ]
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2395): note: see reference to function template instantiation 'void Single_linked_list<double>::Delete_element_ex(Single_linked_node<val_type> *) noexcept(false)' being compiled
+          with
+          [
+              val_type=double
+          ]
+d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(76): warning C5038: data member 'Single_linked_list<double>::first_' will be initialized after data member 'Single_linked_list<double>::size_'
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(76): note: while compiling class template member function 'Single_linked_list<double>::Single_linked_list(void)'
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2119): note: see reference to function template instantiation 'Single_linked_list<double>::Single_linked_list(void)' being compiled
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\streambuf(710): warning C4820: 'std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t>>': '3' bytes padding added after data member 'std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t>>::_Failed'
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xlocnum(1623): note: see reference to class template instantiation 'std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t>>' being compiled
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xlocnum(1623): note: while compiling class template member function '_OutIt std::num_put<wchar_t,_OutIt>::do_put(_OutIt,std::ios_base &,_Elem,const void *) const'
@@ -225,27 +236,27 @@ c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.1
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(161): warning C4820: 'std::basic_ostream<char,std::char_traits<char>>::sentry': '3' bytes padding added after data member 'std::basic_ostream<char,std::char_traits<char>>::sentry::_Ok'
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(443): note: see reference to class template instantiation 'std::basic_ostream<char,std::char_traits<char>>::sentry' being compiled
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(441): note: while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)'
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1259): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2128): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)' being compiled
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(687): note: see reference to class template instantiation 'std::basic_ostream<char,std::char_traits<char>>' being compiled
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(453): warning C4571: Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(333): warning C4571: Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(321): note: while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)'
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1265): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2189): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)' being compiled
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(234): warning C4571: Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(222): note: while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(bool)'
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1276): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(bool)' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2200): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(bool)' being compiled
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\istream(129): warning C4820: 'std::basic_istream<char,std::char_traits<char>>::sentry': '3' bytes padding added after data member 'std::basic_istream<char,std::char_traits<char>>::sentry::_Ok'
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\istream(378): note: see reference to class template instantiation 'std::basic_istream<char,std::char_traits<char>>::sentry' being compiled
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\istream(374): note: while compiling class template member function 'int std::basic_istream<char,std::char_traits<char>>::get(void)'
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1418): note: see reference to function template instantiation 'int std::basic_istream<char,std::char_traits<char>>::get(void)' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2707): note: see reference to function template instantiation 'int std::basic_istream<char,std::char_traits<char>>::get(void)' being compiled
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\istream(773): note: see reference to class template instantiation 'std::basic_istream<char,std::char_traits<char>>' being compiled
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\istream(394): warning C4571: Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(493): warning C4571: Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(481): note: while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)'
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(640): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1117): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)' being compiled
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(313): warning C4571: Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(296): note: while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)'
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(998): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1717): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)' being compiled
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(181): warning C4571: Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(176): note: while compiling class template member function 'void std::basic_ostream<char,std::char_traits<char>>::_Osfx(void)'
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(139): note: see reference to function template instantiation 'void std::basic_ostream<char,std::char_traits<char>>::_Osfx(void)' being compiled
@@ -275,9 +286,9 @@ c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.1
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\string(544): note: e.g. instead of printf(name); use printf("%s", name); because format specifiers in 'name' may pose a security issue
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\string(544): note: consider using constexpr specifier for named string literals
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(864): warning C4571: Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1259): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::operator <<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,char)' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2185): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::operator <<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,char)' being compiled
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(826): warning C4571: Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
-  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1210): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::operator <<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,const char *)' being compiled
+  d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(2117): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::operator <<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,const char *)' being compiled
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(558): warning C4571: Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ostream(546): note: while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::put(_Elem)'
           with
@@ -997,7 +1008,6 @@ c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.1
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xiosbase(543): warning C4514: 'std::ios_base::ios_base': unreferenced inline function has been removed
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xiosbase(547): warning C4514: 'std::ios_base::_Init': unreferenced inline function has been removed
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xlocnum(96): warning C4514: 'std::_Maklocwcs': unreferenced inline function has been removed
-c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ios(206): warning C4514: 'std::boolalpha': unreferenced inline function has been removed
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ios(212): warning C4514: 'std::dec': unreferenced inline function has been removed
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ios(218): warning C4514: 'std::defaultfloat': unreferenced inline function has been removed
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\ios(224): warning C4514: 'std::fixed': unreferenced inline function has been removed
@@ -1059,4 +1069,6 @@ c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.1
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\string(650): warning C4514: 'std::literals::string_literals::operator ""s': unreferenced inline function has been removed
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\string(655): warning C4514: 'std::literals::string_literals::operator ""s': unreferenced inline function has been removed
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\string(660): warning C4514: 'std::literals::string_literals::operator ""s': unreferenced inline function has been removed
+d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(14): warning C4514: 'Single_linked_list_ex::Single_linked_list_ex': unreferenced inline function has been removed
+d:\visual_studio_projects\c++\study\linked_list\linked_list\linked_list.cpp(1084): warning C4514: 'Double_linked_list_ex::Double_linked_list_ex': unreferenced inline function has been removed
   linked_list.vcxproj -> D:\Visual_Studio_Projects\C++\Study\linked_list\Debug\linked_list.exe
