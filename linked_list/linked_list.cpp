@@ -1520,7 +1520,7 @@ class Double_linked_list
     {
       cerr << "Delete_element_ex: node " << el << " isn't the first node, but doesn't have parents (" << __FILE__ << ' ' << __LINE__ << ")\n";
       
-      throw Single_linked_list_ex("Parent is nullptr");
+      throw Double_linked_list_ex("Parent is nullptr");
     }
 
     if (nullptr == el->next_)
