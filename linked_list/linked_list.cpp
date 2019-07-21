@@ -2256,172 +2256,106 @@ int main()
     try
     {
       emplaced = { sl.Emplace_element(_one, nullptr) };
-    }
-    catch (Single_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-      return -1;
-    }
 
-    cout << "Add " << _two << ", ";
+      cout << "Add " << _two << ", ";
 
-    try
-    {
       emplaced = { sl.Emplace_element(_two, emplaced) };
-    }
-    catch (Single_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-      return -1;
-    }
 
-    cout << "Add " << _three << ", ";
+      cout << "Add " << _three << ", ";
 
-    try
-    {
       emplaced = { sl.Emplace_element(_three, emplaced) };
-    }
-    catch (Single_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-      return -1;
-    }
 
-    Single_linked_node<double> *four { nullptr };
+      Single_linked_node<double> *four{ nullptr };
 
-    cout << "Add " << _four << ", ";
+      cout << "Add " << _four << ", ";
 
-    try
-    {
       four = { sl.Emplace_element(_four, emplaced) };
-    }
-    catch (Single_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-      return -1;
-    }
 
-    cout << "Add " << _five << ", ";
+      cout << "Add " << _five << ", ";
 
-    try
-    {
       emplaced = { sl.Emplace_element(_five, four) };
-    }
-    catch (Single_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-      return -1;
-    }
 
-    cout << "Add " << _six << ", ";
+      cout << "Add " << _six << ", ";
 
-    try
-    {
       emplaced = { sl.Emplace_element(_six, four) };
-    }
-    catch (Single_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-      return -1;
-    }
 
-    cout << "Add " << _seven << endl;
+      cout << "Add " << _seven << endl;
 
-    try
-    {
       node_1 = { sl.Add_element(node_1, emplaced) };
-    }
-    catch (Single_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-      return -1;
-    }
 
-    Single_linked_node<double> *curr { sl.Get_first() };
+      Single_linked_node<double> *curr{ sl.Get_first() };
 
-    cout << "Orig: ";
+      cout << "Orig: ";
 
-    while (nullptr != curr)
-    {
-      cout << curr->Get_val() << ' ';
-      curr = { curr->Get_next() };
-    }
+      while (nullptr != curr)
+      {
+        cout << curr->Get_val() << ' ';
+        curr = { curr->Get_next() };
+      }
 
-    cout << ", size " << sl.Get_size() << endl;
+      cout << ", size " << sl.Get_size() << endl;
 
-    Single_linked_node<double> *parent { nullptr };
-    
-    try
-    {
+      Single_linked_node<double> *parent{ nullptr };
+
       parent = { sl.Find_parent(emplaced) };
 
       cout << "Parent of " << emplaced->Get_val() << ": " << parent->Get_val();
-    }
-    catch (Single_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-    }
 
-    cout << endl;
+      cout << endl;
 
-    try
-    {
       cout << "Move 1 after 3: ";
       sl.Move_after_ex(1, 3);
       cout << "success";
-    }
-    catch (Single_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-    }
 
-    cout << endl;
+      cout << endl;
 
-    for (size_t i{}; i < sl.Get_size(); ++i)
-    {
-      cout << sl[i]->Get_val() << ' ';
-    }
+      for (size_t i{}; i < sl.Get_size(); ++i)
+      {
+        cout << sl[i]->Get_val() << ' ';
+      }
 
-    cout << endl;
+      cout << endl;
 
-    Single_linked_node<double> *found{ new Single_linked_node<double> };
+      Single_linked_node<double> *found{ new Single_linked_node<double> };
 
-    try
-    {
       found = { sl.Find_value_first_occur(5.0) };
 
       if (nullptr != found)
       {
         sl.Delete_element_ex(found);
       }
+
+      cout << "size " << sl.Get_size() << endl;
+
+      curr = sl.Get_first();
+
+      cout << "Print_1: ";
+
+      while (nullptr != curr)
+      {
+        cout << curr->Get_val() << ' ';
+        curr = curr->Get_next();
+      }
+
+      cout << endl;
+
+      cout << "Print_2: ";
+
+      for (size_t i{}; i < sl.Get_size(); ++i)
+      {
+        cout << sl[i]->Get_val() << ' ';
+      }
+
+      cout << endl;
     }
     catch (Single_linked_list_ex& ex)
     {
       cerr << "Exception: " << ex.what() << endl;
+
+      cin.get();
+
+      return -1;
     }
-
-    cout << "size " << sl.Get_size() << endl;
-
-    curr = sl.Get_first();
-
-    cout << "Print_1: ";
-
-    while (nullptr != curr)
-    {
-      cout << curr->Get_val() << ' ';
-      curr = curr->Get_next();
-    }
-
-    cout << endl;
-
-    cout << "Print_2: ";
-
-    for (size_t i{}; i < sl.Get_size(); ++i)
-    {
-      cout << sl[i]->Get_val() << ' ';
-    }
-
-    cout << endl;
   }
   while (false);
 
@@ -2570,137 +2504,108 @@ int main()
     try
     {
       emplaced_2 = { dl.Emplace_element(_one, nullptr) };
-    }
-    catch (Single_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-      return -1;
-    }
 
-    cout << "Add " << _two << ", ";
+      cout << "Add " << _two << ", ";
 
-    if (false == dl.Emplace_element(_two, emplaced_2, &emplaced_2))
-    {
-      return -1;
-    }
+      emplaced_2 = { dl.Emplace_element(_two, emplaced_2) };
 
-    cout << "Add " << _three << ", ";
+      cout << "Add " << _three << ", ";
 
-    if (false == dl.Emplace_element(_three, emplaced_2, &emplaced_2))
-    {
-      return -1;
-    }
+      emplaced_2 = { dl.Emplace_element(_three, emplaced_2) };
 
-    Double_linked_node<double> *four_2{ new Double_linked_node<double> };
+      Double_linked_node<double> *four_2{ new Double_linked_node<double> };
 
-    cout << "Add " << _four << ", ";
+      cout << "Add " << _four << ", ";
 
-    if (false == dl.Emplace_element(_four, emplaced_2, &four_2))
-    {
-      return -1;
-    }
+      four_2 = { dl.Emplace_element(_four, emplaced_2) };
 
-    cout << "Add " << _five << ", ";
+      cout << "Add " << _five << ", ";
 
-    if (false == dl.Emplace_element(_five, four_2, &emplaced_2))
-    {
-      return -1;
-    }
+      emplaced_2 = { dl.Emplace_element(_five, four_2) };
 
-    cout << "Add " << _six << ", ";
+      cout << "Add " << _six << ", ";
 
-    if (false == dl.Emplace_element(_six, four_2, &emplaced_2))
-    {
-      return -1;
-    }
+      emplaced_2 = { dl.Emplace_element(_six, four_2) };
 
-    cout << "Add " << _seven << endl;
+      cout << "Add " << _seven << endl;
 
-    if (false == dl.Add_element(&node_2, emplaced_2))
-    {
-      return -1;
-    }
+      node_2 = { dl.Add_element(node_2, emplaced_2) };
 
-    Double_linked_node<double> *curr_2 { dl.Get_first() };
+      Double_linked_node<double> *curr_2 { dl.Get_first() };
 
-    cout << "Orig: ";
+      cout << "Orig: ";
 
-    while (nullptr != curr_2)
-    {
-      cout << curr_2->Get_val() << ' ';
-      curr_2 = { curr_2->Get_next() };
-    }
+      while (nullptr != curr_2)
+      {
+        cout << curr_2->Get_val() << ' ';
+        curr_2 = { curr_2->Get_next() };
+      }
 
-    cout << ", size " << dl.Get_size() << endl;
+      cout << ", size " << dl.Get_size() << endl;
 
-    Double_linked_node<double> *parent_2 { nullptr };
+      Double_linked_node<double> *parent_2{ nullptr };
 
-    if (nullptr != emplaced_2)
-    {
-      parent_2 = { emplaced_2->Get_prev() };
-    }
+      if (nullptr != emplaced_2)
+      {
+        parent_2 = { emplaced_2->Get_prev() };
+      }
 
-    if (nullptr != parent_2)
-    {
-      cout << "Parent of " << emplaced_2->Get_val() << ": " << emplaced_2->Get_prev()->Get_val();
-    }
+      if (nullptr != parent_2)
+      {
+        cout << "Parent of " << emplaced_2->Get_val() << ": " << emplaced_2->Get_prev()->Get_val();
+      }
 
-    cout << endl;
+      cout << endl;
 
-    try
-    {
       cout << "Move 1 after 4: ";
       dl.Move_after_ex(1, 4);
       cout << "success";
-    }
-    catch (Double_linked_list_ex& ex)
-    {
-      cerr << "Exception: " << ex.what() << endl;
-    }
 
-    cout << endl;
+      cout << endl;
 
-    for (size_t i{}; i < dl.Get_size(); ++i)
-    {
-      cout << dl[i]->Get_val() << ' ';
-    }
+      for (size_t i{}; i < dl.Get_size(); ++i)
+      {
+        cout << dl[i]->Get_val() << ' ';
+      }
 
-    cout << endl;
+      cout << endl;
 
-    Double_linked_node<double> *found_2 { nullptr };
+      Double_linked_node<double> *found_2 { nullptr };
 
-    try
-    {
-      found_2 = dl.Find_value_first_occur(4.5);
+      found_2 = { dl.Find_value_first_occur(4.5) };
 
       if (nullptr != found_2)
       {
         dl.Delete_element_ex(found_2);
       }
+
+      cout << "size " << dl.Get_size() << endl;
+
+      curr_2 = dl.Get_first();
+
+      while (nullptr != curr_2)
+      {
+        cout << curr_2->Get_val() << ' ';
+        curr_2 = { curr_2->Get_next() };
+      }
+
+      cout << endl;
+
+      for (size_t i{}; i < dl.Get_size(); ++i)
+      {
+        cout << dl[i]->Get_val() << ' ';
+      }
+
+      cout << endl;
     }
     catch (Double_linked_list_ex& ex)
     {
       cerr << "Exception: " << ex.what() << endl;
+
+      cin.get();
+
+      return -1;
     }
-    
-    cout << "size " << dl.Get_size() << endl;
-
-    curr_2 = dl.Get_first();
-
-    while (nullptr != curr_2)
-    {
-      cout << curr_2->Get_val() << ' ';
-      curr_2 = { curr_2->Get_next() };
-    }
-
-    cout << endl;
-
-    for (size_t i{}; i < dl.Get_size(); ++i)
-    {
-      cout << dl[i]->Get_val() << ' ';
-    }
-
-    cout << endl;
   }
   while (false);
 
